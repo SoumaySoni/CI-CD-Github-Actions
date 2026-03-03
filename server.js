@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-    res.json({ message: "Backend deployed successfully 🚀" });
+    res.json({ message: "Backend deployed successfully 🚀 by soumay ci/cd" });
 });
 
 app.listen(PORT, () => {
