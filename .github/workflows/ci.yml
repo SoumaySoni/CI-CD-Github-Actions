@@ -1,10 +1,8 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -28,10 +26,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    if: success()
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Deploy
-        run: echo "Deploying application..."
+      - name: Trigger Render Deploy
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
